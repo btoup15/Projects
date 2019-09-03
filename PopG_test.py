@@ -99,4 +99,6 @@ while g != gens:    # iteratively calculates p(A) for each generation
 plt.plot(range(gens), freqs)
 plt.xlabel('Generation')
 plt.ylabel('p(A)')
+plt.ylim(0, 1)
+plt.xlim(0, gens)
 plt.show()
