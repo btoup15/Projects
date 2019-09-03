@@ -70,7 +70,7 @@ for i in range(N):   # generates an initial population
 freqs.append(calcFreqs(indivs))
 
 g = 1
-while g != gens:
+while g != gens:    # iteratively calculates p(A) for each generation
     newGen = []
     for i in range(N):
         first = int(PickParents())
