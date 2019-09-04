@@ -15,6 +15,7 @@ os.system('cls')
 N = int(input('What is the size of the population? '))
 freqA = float(input('What is the starting frequency of the A allele? '))
 gens = int(input('How many generations is the population simulated over? '))
+runs = int(input('How many runs should be simulated simultaneously? '))
 
 
 def randnum():      # random number generator
@@ -62,41 +63,39 @@ def calcFreqs(pops):    # calculates frequencies
     return frequency
 
 
-indivs = []
-freqs = []
-
-for i in range(N):   # generates an initial population
-    indivs.append(GenIndiv())
-freqs.append(calcFreqs(indivs))
-
-g = 1
-while g != gens:    # iteratively calculates p(A) for each generation
-    newGen = []
-    for i in range(N):
-        first = int(PickParents())
-        second = int(PickParents())
-        while first == second:
+for i in range(runs):
+    g = 1
+    indivs = []
+    freqs = []
+    for i in range(N):   # generates an initial population
+        indivs.append(GenIndiv())
+    freqs.append(calcFreqs(indivs))
+    while g != gens:    # iteratively calculates p(A) for each generation
+        newGen = []
+        for i in range(N):
+            first = int(PickParents())
             second = int(PickParents())
-        firstparent = indivs[first]
-        secondparent = indivs[second]
-        ran1 = randnum()
-        if ran1 < .5:
-            firstgamete = firstparent[0]
-        else:
-            firstgamete = firstparent[1]
-        ran2 = randnum()
-        if ran2 < .5:
-            secondgamete = secondparent[0]
-        else:
-            secondgamete = secondparent[1]
-        newAllele = firstgamete + secondgamete
-        newGen.append(newAllele)
-    freqs.append(calcFreqs(newGen))
-    indivs = newGen
-    g += 1
+            while first == second:
+                second = int(PickParents())
+            firstparent = indivs[first]
+            secondparent = indivs[second]
+            ran1 = randnum()
+            if ran1 < .5:
+                firstgamete = firstparent[0]
+            else:
+                firstgamete = firstparent[1]
+            ran2 = randnum()
+            if ran2 < .5:
+                secondgamete = secondparent[0]
+            else:
+                secondgamete = secondparent[1]
+            newAllele = firstgamete + secondgamete
+            newGen.append(newAllele)
+        freqs.append(calcFreqs(newGen))
+        indivs = newGen
+        g += 1
+    plt.plot(range(gens), freqs)
 
-
-plt.plot(range(gens), freqs)
 plt.xlabel('Generation')
 plt.ylabel('p(A)')
 plt.ylim(0, 1)
