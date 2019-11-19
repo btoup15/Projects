@@ -13,25 +13,29 @@ import random
 os.system('cls')
 
 N = int(input('What is the size of the population? '))
-freqA = float(input('What is the starting frequency of the A allele? '))
-gens = int(input('How many generations is the population simulated over? '))
-runs = int(input('How many runs should be simulated simultaneously? '))
+#freqA = float(input('What is the starting frequency of the A allele? '))
+freqA = .5
+#gens = int(input('How many generations is the population simulated over? '))
+gens = 100
+#runs = int(input('How many runs should be simulated simultaneously? '))
+runs = 5
 
-
-def randnum():      # random number generator
+# Creating the random numbe generator that will be used to generate
+# the starting population as well as select individuals to breed
+def randnum():
     num1 = random.randint(1, (2 ** 15 - 1))
     num2 = random.randint(1, (2 ** 15 - 1))
     numer = (num1 * 32768) + num2
     choice = numer / 1073741823
     return choice
 
-
-def PickParents():    # selects a parent from the population
+# selects a parent from the population
+def PickParents():
     num = (randnum() * N) // 1
     return num
 
-
-def GenIndiv():    # Generates individuals
+# Generates individuals based on an initial frequency
+def GenIndiv():
     first = randnum()
     if first <= freqA:
         first = 1
@@ -49,8 +53,8 @@ def GenIndiv():    # Generates individuals
     else:
         return "aa"
 
-
-def calcFreqs(pops):    # calculates frequencies
+# calculates the allele frequencies of a population
+def calcFreqs(pops):
     A = 0
     for i in pops:
         if i == 'AA':
@@ -62,7 +66,7 @@ def calcFreqs(pops):    # calculates frequencies
     frequency = A / (N * 2)
     return frequency
 
-
+finalfreqs = []   #the list that will contain the final frequencies of each run
 for i in range(runs):
     g = 1
     indivs = []
@@ -94,10 +98,11 @@ for i in range(runs):
         freqs.append(calcFreqs(newGen))
         indivs = newGen
         g += 1
-    plt.plot(range(gens), freqs)
-
-plt.xlabel('Generation')
-plt.ylabel('p(A)')
-plt.ylim(0, 1)
-plt.xlim(0, gens)
-plt.show()
+    finalfreqs.append(freqs[-1])
+    #plt.plot(range(gens), freqs)
+print(finalfreqs)
+# plt.xlabel('Generation')
+# plt.ylabel('p(A)')
+# plt.ylim(0, 1)
+# plt.xlim(0, gens)
+# plt.show()
