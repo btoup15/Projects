@@ -24,5 +24,5 @@ for i in range(birds):
         random.shuffle(i)
     sched = w1 + w2 + w3
     with open("C:/Users/ben/Desktop/birds.csv", "a") as fp:
-        wr = csv.writer(fp, dialect='excel')
+        wr = csv.writer(fp, dialect='excel', lineterminator = '\n')
         wr.writerow(sched)
