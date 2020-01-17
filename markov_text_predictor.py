@@ -6,9 +6,10 @@ import os
 import numpy as np
 
 os.system('cls')
+inpt = str(input("Enter the filepath of the text file: "))
 
-ray = open('textfile.txt', encoding='utf8').read()
-iso = ray.split()
+text = open(inpt, encoding='utf8').read()
+iso = text.split()
 
 def make_pairs(lst):
     for i in range(len(lst)-1):
