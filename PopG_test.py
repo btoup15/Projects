@@ -22,6 +22,8 @@ runs = 5
 
 # Creating the random numbe generator that will be used to generate
 # the starting population as well as select individuals to breed
+
+
 def randnum():
     num1 = random.randint(1, (2 ** 15 - 1))
     num2 = random.randint(1, (2 ** 15 - 1))
@@ -29,10 +31,12 @@ def randnum():
     choice = numer / 1073741823
     return choice
 
+
 # selects a parent from the population
 def PickParents():
     num = (randnum() * N) // 1
     return num
+
 
 # Generates individuals based on an initial frequency
 def GenIndiv():
@@ -53,6 +57,7 @@ def GenIndiv():
     else:
         return "aa"
 
+
 # calculates the allele frequencies of a population
 def calcFreqs(pops):
     A = 0
@@ -66,7 +71,8 @@ def calcFreqs(pops):
     frequency = A / (N * 2)
     return frequency
 
-finalfreqs = []   #the list that will contain the final frequencies of each run
+
+finalfreqs = []   # the list that will contain the final frequencies each run
 for i in range(runs):
     g = 1
     indivs = []
@@ -99,7 +105,7 @@ for i in range(runs):
         indivs = newGen
         g += 1
     finalfreqs.append(freqs[-1])
-    #plt.plot(range(gens), freqs)
+    # plt.plot(range(gens), freqs)
 print(finalfreqs)
 # plt.xlabel('Generation')
 # plt.ylabel('p(A)')
