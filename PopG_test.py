@@ -13,11 +13,11 @@ import random
 os.system('cls')
 
 N = int(input('What is the size of the population? '))
-#freqA = float(input('What is the starting frequency of the A allele? '))
+# freqA = float(input('What is the starting frequency of the A allele? '))
 freqA = .5
-#gens = int(input('How many generations is the population simulated over? '))
+# gens = int(input('How many generations is the population simulated over? '))
 gens = 100
-#runs = int(input('How many runs should be simulated simultaneously? '))
+# runs = int(input('How many runs should be simulated simultaneously? '))
 runs = 5
 
 # Creating the random numbe generator that will be used to generate
