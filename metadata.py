@@ -5,7 +5,6 @@
 ##############################
 
 import os
-import glob
 import datetime
 import csv
 path = 'C:/Users/ben/Desktop/General/Documents/'
